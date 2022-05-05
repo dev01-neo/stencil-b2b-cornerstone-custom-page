@@ -101,21 +101,6 @@
                     <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
                 </h2>
             {{/if}}
-            {{#if product.call_for_price}}
-                <p class="productView-price">
-                    <span>{{product.call_for_price}}</span>
-                </p>
-            {{/if}}
-            <div class="productView-price">
-                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                    {{> components/products/price price=product.price}}
-                {{else}}
-                    {{> components/common/login-for-pricing}}
-                {{/or}}
-            </div>
-            {{{region name="product_below_price"}}}
-            
-            {{product.detail_messages}}
             
         </div>
     </section>
@@ -135,6 +120,24 @@
                         {{{dynamicComponent 'components/products/options'}}}
                     {{/each}}
                 </div>
+
+                {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span>{{product.call_for_price}}</span>
+                </p>
+            {{/if}}
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+            {{{region name="product_below_price"}}}
+            
+            {{product.detail_messages}}
+            
+
                 <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
                     <label class="form-label form-label--alternate">
                         {{lang 'products.current_stock'}}
