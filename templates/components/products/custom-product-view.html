@@ -1,4 +1,4 @@
-<h1>hi im</h1>
+<h1>working on side pane right</h1>
 <div class="productView"
     {{#if settings.data_tag_enabled}}
     data-event-type="product"
@@ -114,28 +114,7 @@
                 {{/or}}
             </div>
             {{{region name="product_below_price"}}}
-            <div class="productView-rating">
-                {{#if settings.show_product_rating}}
-                    {{> components/products/ratings rating=product.rating}}
-                    {{#if product.num_reviews '>' 0}}
-                        <a href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}" id="productReview_link">
-                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
-                        </a>
-                    {{else}}
-                        <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
-                    {{/if}}
-                {{/if}}
-                {{#if settings.show_product_reviews}}
-                    <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
-                       class="productView-reviewLink productView-reviewLink--new"
-                       {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
-                       role="button"
-                    >
-                       {{lang 'products.reviews.new'}}
-                    </a>
-                    {{> components/products/modals/writeReview}}
-                {{/if}}
-            </div>
+            
             {{product.detail_messages}}
             <dl class="productView-info">
                 <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
