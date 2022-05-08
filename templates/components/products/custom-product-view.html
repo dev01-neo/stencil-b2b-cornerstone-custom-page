@@ -130,9 +130,20 @@
             {{/if}}
 
 <!-- my custom sec     -->
+<style>
+    .quantity-label{
+        margin-top: 24px;
+        margin-left: 31px;
+    }
+    .quantity-pdp{
+        background-color: white !important;
+        border: 1px solid black !important;
+        margin: 12px 0px 0px 16px !important;
+    }
+</style>
 
 <div class="row">
-    <div class="large-6 columns">
+    <div class="small-6 large-6 columns">
         {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
             {{> components/products/price price=product.price}}
         {{else}}
@@ -143,12 +154,27 @@
     
         {{product.detail_messages}}
     </div>
-    <div class="large-6 columns">
+    <div class="small-6 large-6 columns">
         {{> components/products/add-to-cart}}
     </div>
   </div>
 
+  <article class="productView-description">
+    {{#if theme_settings.show_product_details_tabs}}
+        {{> components/products/description-tabs}}
+    {{else}}
+        {{> components/products/description}}
+    {{/if}}
+</article>
 
+<a href="#" class="button tiny">VIEW FULL DETAILS</a>
+<a href="#" class="button tiny">FIT CHART</a>
+<a href="#" class="button tiny">HOW TO MEASURE</a>
+
+<ul style="list-style: none;">
+    <li><a href="">> Delivery options</a></li>
+    <li><a href="">> Returns & refunds</a></li>
+</ul>
 <!-- my custom sec     -->
 
 <!-- end -->
@@ -160,13 +186,7 @@
 
 
 
-    <article class="productView-description">
-        {{#if theme_settings.show_product_details_tabs}}
-            {{> components/products/description-tabs}}
-        {{else}}
-            {{> components/products/description}}
-        {{/if}}
-    </article>
+    
 
 
 <div id="previewModal" class="modal modal--large" data-reveal>
