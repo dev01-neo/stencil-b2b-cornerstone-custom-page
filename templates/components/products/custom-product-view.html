@@ -1,4 +1,4 @@
-<h1>working on side pane right</h1>
+<!-- <h1>working on side pane right</h1> -->
 <div class="productView"
     {{#if settings.data_tag_enabled}}
     data-event-type="product"
@@ -131,19 +131,32 @@
 
 <!-- my custom sec     -->
 <style>
+    .quantity-text{
+        margin-top: -14px!important;
+        margin-left: -20%!important;
+    }
     .quantity-label{
         margin-top: 24px;
-        margin-left: 31px;
+        margin-left: 20%;
     }
     .quantity-pdp{
         background-color: white !important;
         border: 1px solid black !important;
-        margin: 12px 0px 0px 16px !important;
+        margin-top:8%;
+    }
+    @media only screen and (min-width: 768px){
+        .productView-title{
+            font-size: 45px;
+            font-family:"Open Sans","Trebuchet MS",Arial,sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: bolder;
+        }
     }
 </style>
 
 <div class="row">
-    <div class="small-6 large-6 columns">
+    <div class="large-6 columns">
         {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
             {{> components/products/price price=product.price}}
         {{else}}
@@ -154,7 +167,7 @@
     
         {{product.detail_messages}}
     </div>
-    <div class="small-6 large-6 columns">
+    <div class="large-6 columns">
         {{> components/products/add-to-cart}}
     </div>
   </div>
