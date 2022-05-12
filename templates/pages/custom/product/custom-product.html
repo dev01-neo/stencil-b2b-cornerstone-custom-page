@@ -19,29 +19,59 @@ product:
         {{> components/common/alert/alert-info message}}
     {{/each}}
     <style>
-        .productView-info-container{display: grid;}
-        .productView-info-name{grid-column-start: 1;}
-        .productView-info-value{grid-column-start: 2;}
-        .productView-info-hardcoded{grid-column-start: 3;}
-
-        .productView-thumbnails{
-            display: flex;
-            flex-direction: column-reverse;
+        .table-custom{
+            background-color: white;
+            table-layout: unset;
         }
     </style>
     <div>
         {{> components/products/custom-product-view}}
     </div>
-    <div class="productView-info-container">
+    <div class="custom-feilds-three-sections">
+
+
         <!-- custom feilds -->
-        {{#if theme_settings.show_custom_fields_tabs '!==' true}}
-        {{#each product.custom_fields}}
-            <dt class="productView-info-name">{{name}}:</dt>
-            <dd class="productView-info-value">{{{ sanitize value}}}</dd>
-        {{/each}}
-    {{/if}}
-            <dd class="productView-info-hardcoded">Custom fitted raincover included</dd>
+
+    <div class="row"> 
+        <div class="large-6 columns">     
+            <!-- large-push-6  -->
+            {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                {{#each product.custom_fields}}
+                <table class="table-custom">
+                <tr>
+                  <th>{{name}}:</th>
+                  <td>{{{ sanitize value}}}</td>
+                </tr>
+                </table>
+              {{/each}}
+            {{/if}}
+        </div>
+    </div> 
+
+    
+    {{inject "customtName" product.custom_fields}}
+    <script>
+    var jsContext = JSON.parse({{jsContext}});
+    var customfields = (jsContext.customtName);
+    customfields.forEach(main=>{
+        
+        var customfieldname = main.name;
+        var customfieldvalue = main.value;
+        const names = customfieldname.split('__');
+            var namepositionsecond =  names[1];
+            var namepositionfirst =  names[0];
+            if(namepositionsecond == "specification"){
+                console.log(namepositionfirst, customfieldvalue);
+            }
+             if(namepositionsecond == "demo"){
+                console.log(namepositionfirst);
+            }
+    })
+    </script>
+
         <!-- custom feilds -->
+        
+        
         {{{region name="product_below_content"}}}
 
         {{#if product.videos.list.length}}
