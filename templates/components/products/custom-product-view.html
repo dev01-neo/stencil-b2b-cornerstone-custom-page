@@ -12,109 +12,60 @@
         border: 1px solid black !important;
         margin-top:8%;
     }
-    .image-thumb-section{
-        display: flex;
-    }
-    .thumb-veiw{
-        display: contents;
-    }
-    .thumb-dir{
-        display: flex;
-        flex-direction: column-reverse;
-        width: 90%;
-        margin-right: -73%;
-    }
-    @media only screen and (min-width: 768px){
-        .productView-title{
-            font-size: 45px;
-            font-family:"Open Sans","Trebuchet MS",Arial,sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: bolder;
-            margin-bottom: 5%;
-        }
-    }
-    .productView-thumbnail-link {
-        height: 100% !important;
-        max-width: 90% !important;
-        justify-content: center !important;
-        align-items: center !important;
-        }
-        .productView-thumbnail-link img
-        {
-                width: 100% !important;
-        }
+
+    /* slik */
+
     .productView-thumbnails .slick-next
-        {
-         width: 30px;
-        height: 30px;
-        top: auto;
-        bottom: -44px;
-        margin-right: 40%;
-        }
-    .productView-thumbnails .slick-prev
-        {
-        width: 30px;
-        height: 30px;
-        top: -18px;
-        bottom: auto;
-        margin-left: 35%;
-        }
-    .productView-thumbnails .draggable
-        {
-        margin-left: 0px !important;
-        margin-right: 0px !important;
-        }
+    {
+     width: 30px;
+    height: 30px;
+    top: auto;
+    bottom: -44px;
+    margin-right: 40%;
+    }
+.productView-thumbnails .slick-prev
+    {
+    width: 30px;
+    height: 30px;
+    top: -18px;
+    bottom: auto;
+    margin-left: 35%;
+    }
     .productView-thumbnails .slick-next::before, .slick-prev::before {
-        height: 10px;
-        width: 10px;
+    height: 10px;
+    width: 10px;
+}
+.productView-thumbnails .slick-next::before {
+    background-image: url(//cdn11.bigcommerce.com/s-uok04hg6nb/product_images/uploaded_images/down1-arrow.png);
+    fill: #242424!important;
+    font-size: 25px;
+    font-weight: 800;
+    width: 16px;
+}
+.productView-thumbnails .slick-prev::before {
+    background-image: url(//cdn11.bigcommerce.com/s-uok04hg6nb/product_images/uploaded_images/up-arrow-angle.png);
+    fill: #242424!important;
+    font-size: 25px;
+    font-weight: 800;
+    width: 16px;
     }
-    .productView-thumbnails .slick-next::before {
-        background-image: url(//cdn11.bigcommerce.com/s-uok04hg6nb/product_images/uploaded_images/down1-arrow.png);
-        fill: #242424!important;
-        font-size: 25px;
-        font-weight: 800;
-        width: 16px;
-    }
-    .productView-thumbnails .slick-prev::before {
-        background-image: url(//cdn11.bigcommerce.com/s-uok04hg6nb/product_images/uploaded_images/up-arrow-angle.png);
-        fill: #242424!important;
-        font-size: 25px;
-        font-weight: 800;
-        width: 16px;
-        }
-        .primageszoomthumb .slick-disabled {
-        cursor: pointer;
-        opacity: 1;
-            }
-        .primageszoomthumb
-        {
-            display: flex;
-        align-items: center;
-        }
-        .font-fifteen{
-            font-size: 15px;
-            font-weight: 300;
-            line-height: 1.2;
-            font-family: "Forza","Open Sans","Trebuchet MS",Arial,sans-serif;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
     @media screen and (max-width: 800px) and (min-width: 60px) {
-    .productView-thumbnails .slick-next
-        {         
-        margin-right: 12%;
-        }
-    .productView-thumbnails .slick-prev
-        {
-        
-        margin-left: 20%;
-        }
+.productView-thumbnails .slick-next
+    {
+     
+    margin-right: 12%;
     }
+.productView-thumbnails .slick-prev
+    {
+    
+    margin-left: 20%;
+    }
+}
+.slick-prev .slick-arrow{
+    outline: unset !important;
+}
 </style>
 
-
-<!-- <h1>working on side pane right</h1> -->
 <div class="productView"
     {{#if settings.data_tag_enabled}}
     data-event-type="product"
@@ -146,91 +97,92 @@
         {{/if}}
     {{/each}}
 
-        <section class="productView-images" data-image-gallery>
-            {{!--
-                Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
-                for variant/rule image replacement
-            --}}
-            <div class="row primageszoomthumb image-thumb-section">
-                <div class="small-2 large-2 columns thumb-veiw" style="padding-left: 0px;">
-                    <ul class="productView-thumbnails thumb-dir"{{#gt product.images.length 5}} data-slick='{
-          
-                    "infinite": false,
-                    "vertical": true,
-                    "verticalSwiping": true,
-                    "dots": true,
-                    "arrow":true,
-                    "slidesToShow": 5,
-                    "slidesToScroll": 2
-                }'{{/gt}}>
-                {{#each product.images}}
-                    <li class="productView-thumbnail">
-                        <a
-                            class="productView-thumbnail-link"
-                            href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                            data-image-gallery-item
-                            data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
-                            data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
-                            data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
-                        >
-                        {{> components/common/responsive-img
-                            image=this
-                            fallback_size=../theme_settings.productview_thumb_size
-                            lazyload=../theme_settings.lazyload_mode
-                        }}
-                        </a>
-                    </li>
-                {{/each}}
-            </ul>        
-        </div>
-      <div class="small-10 large-10 columns">
-                
-     {{#if product.images.length '>' 1 }}
-            {{> components/carousel-content-announcement}}
-            {{/if}}
-            <figure class="productView-image"
-                    data-image-gallery-main
-                    {{#if product.main_image}}
-                    data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
-                    {{/if}}
-                    >
-                <div class="productView-img-container">
-                    {{!-- Remove the surrounding a-element if there is no main image. --}}
-                    {{#if product.main_image}}
-                        <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
-                            target="_blank"{{#if schema}} itemprop="image"{{/if}}>
-                    {{/if}}
-                    {{> components/common/responsive-img
-                        image=product.main_image
-                        class="productView-image--default"
-                        fallback_size=theme_settings.product_size
-                        lazyload=theme_settings.lazyload_mode
-                        default_image=theme_settings.default_image_product
-                        otherAttributes="data-main-image"
-                    }}
-                    {{!-- Remove the surrounding a-element if there is no main image. --}}
-                    {{#if product.main_image}}
-                        </a>
-                    {{/if}}
-                </div>
-            </figure>
-          
-                </div>
-    </div>
-    </section>
-    
-
-    <section class="productView-details product-data" style="width: 50%!important;">
+    <section class="productView-details product-data">
         <div class="productView-product">
             <h1 class="productView-title">{{product.title}}</h1>
             {{#if product.brand}}
-                <h1 class="productView-brand font-fifteen">
+                <h1 class="productView-brand">
                     {{product.brand.name}}
                 </h1>
             {{/if}}
             
         </div>
     </section>
+
+<!-- start -->
+
+<section class="productView-images" data-image-gallery>
+    {{!--
+        Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+        for variant/rule image replacement
+    --}}
+    <div class="row">
+    <div class="small-4 large-4 columns" style="padding-left: 0px;">
+    <ul class="productView-thumbnails"{{#gt product.images.length 4}} data-slick='{
+        "infinite": true,
+        "mobileFirst": true,
+        "dots": false,
+        "vertical": true,
+        "accessibility": false,
+        "slidesToShow": 4,
+        "slidesToScroll": 5,
+        "outline": false
+    }'{{/gt}}>
+    {{#each product.images}}
+        <li class="productView-thumbnail">
+            <a
+                class="productView-thumbnail-link"
+                href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                data-image-gallery-item
+                data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+            >
+            {{> components/common/responsive-img
+                image=this
+                fallback_size=../theme_settings.productview_thumb_size
+                lazyload=../theme_settings.lazyload_mode
+            }}
+            </a>
+        </li>
+    {{/each}}
+</ul>
+</div>
+<div class="small-8 large-8 columns">
+    {{#if product.images.length '>' 1 }}
+    {{> components/carousel-content-announcement}}
+    {{/if}}
+    <figure class="productView-image"
+            data-image-gallery-main
+            {{#if product.main_image}}
+            data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+            {{/if}}
+            >
+        <div class="productView-img-container">
+            {{!-- Remove the surrounding a-element if there is no main image. --}}
+            {{#if product.main_image}}
+                <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                    target="_blank">
+            {{/if}}
+            {{> components/common/responsive-img
+                image=product.main_image
+                class="productView-image--default"
+                fallback_size=theme_settings.product_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+                otherAttributes="data-main-image"
+            }}
+            {{!-- Remove the surrounding a-element if there is no main image. --}}
+            {{#if product.main_image}}
+                </a>
+            {{/if}}
+        </div>
+    </figure>
+</div>
+</div>
+</section>
+
+<!-- end -->
 
 <!-- start     -->
 
@@ -259,7 +211,7 @@
 <!-- my custom sec     -->
 
 <div class="row">
-    <div class="large-6 columns">
+    <div class="large-3 columns">
         {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
             {{> components/products/price price=product.price}}
         {{else}}
@@ -270,7 +222,7 @@
     
         {{product.detail_messages}}
     </div>
-    <div class="large-6 columns">
+    <div class="large-9 columns">
         {{> components/products/add-to-cart}}
     </div>
   </div>
@@ -300,19 +252,14 @@
     </section>
 </div>
 
-
-
-    
-
-
 <div id="previewModal" class="modal modal--large" data-reveal>
     {{> components/common/modal/modal-close-btn }}
     <div class="modal-content"></div>
     <div class="loadingOverlay"></div>
 </div>
 
-<script>
+<!-- <script>
     $('.left').click(function(){
         $('#slickcarousel').slick('slickPrev');
     });
-    </script>
+    </script> -->

@@ -32,46 +32,143 @@ product:
 
         <!-- custom feilds -->
 
-    <div class="row"> 
+        <!-- large-push-6  -->
+
+    <!-- <div class="row"> 
         <div class="large-6 columns">     
-            <!-- large-push-6  -->
+            
             {{#if theme_settings.show_custom_fields_tabs '!==' true}}
                 {{#each product.custom_fields}}
                 <table class="table-custom">
                 <tr>
-                  <th>{{name}}:</th>
-                  <td>{{{ sanitize value}}}</td>
+                  <th class="specone"></th>
+                  <td class="spectwo"></td>
                 </tr>
                 </table>
               {{/each}}
             {{/if}}
         </div>
-    </div> 
+    </div>  -->
 
+    <!-- <div>{{{region name="below_content--global"}}}</div> -->
     
-    {{inject "customtName" product.custom_fields}}
-    <script>
-    var jsContext = JSON.parse({{jsContext}});
-    var customfields = (jsContext.customtName);
-    customfields.forEach(main=>{
-        
-        var customfieldname = main.name;
-        var customfieldvalue = main.value;
-        const names = customfieldname.split('__');
-            var namepositionsecond =  names[1];
-            var namepositionfirst =  names[0];
-            if(namepositionsecond == "specification"){
-                console.log(namepositionfirst, customfieldvalue);
-            }
-             if(namepositionsecond == "demo"){
-                console.log(namepositionfirst);
-            }
-    })
-    </script>
+<style>
+    .custom-table-one{
+        background-color: white!important;
+        border: none;
+    }
+</style>
 
-        <!-- custom feilds -->
-        
-        
+<div class="row">
+    <div class="large-6 columns">
+
+<h1>SPECIFICATION</h1>
+<table class="custom-table-one">
+    <tbody>
+        <tr class="specone">
+        </tr>
+    </tbody>
+</table>
+
+</div>
+<div class="large-6 columns">
+
+    <table style="border: none;">
+    <h1>MORE DETAILS</h1>
+    {{#each product.custom_fields}}
+        {{#if name '==' "MORE DETAILS"}}
+        <tr>
+        <td style="background-color: white;"><li>{{value}}</li></td>
+        </tr>        
+        {{/if}}
+        {{/each}}
+</table>
+
+</div>
+</div>
+
+<div class="row">
+<div class="large-6 columns push-large-6">
+<h1>MATERIALS</h1>
+<table class="custom-table-one">
+    <tbody>
+        <tr class="spectwo">
+        </tr>
+    </tbody>
+</table>
+</div>
+
+
+
+<!-- colapse -->
+
+<style>
+    .collapsible {
+      background-color: #777;
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+    
+    .active, .collapsible:hover {
+      background-color: #555;
+    }
+    
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+    </style>
+
+<h2>Collapsibles</h2>
+
+<p>A Collapsible:</p>
+<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<p>Collapsible Set:</p>
+<button type="button" class="collapsible">Open Section 1</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button type="button" class="collapsible">Open Section 2</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+<button type="button" class="collapsible">Open Section 3</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+<!-- colapse -->
+
+
+             
         {{{region name="product_below_content"}}}
 
         {{#if product.videos.list.length}}
@@ -86,3 +183,51 @@ product:
     {{> components/products/schema}}
 {{/partial}}
 {{> layout/base}}
+
+`{{inject "customtName" product.custom_fields}}
+ <script>
+ var jsContext = JSON.parse({{jsContext}});
+ var customfields = (jsContext.customtName);
+ customfields.forEach(main=>{
+ var customfieldname = main.name;
+ var customfieldvalue = main.value;
+  if(customfieldname == "SPECIFICATION"){
+      const values = customfieldvalue.split(',');
+     values.forEach(Element=>{
+        var elementvalue = Element;
+        customfields.forEach(mainname=>{
+                var custommail = mainname.name;
+                var mainvalues = mainname.value;
+                if(elementvalue == custommail){
+                    $(".specone").append(`<tr><th>${custommail}</th><td>${mainvalues}</td></tr>`);
+                    $(".specone tr:nth-of-type(even)").css("background", "white");
+                }
+        });
+      });
+  }
+ });
+ </script>
+
+`{{inject "customtName" product.custom_fields}}
+<script>
+var jsContext = JSON.parse({{jsContext}});
+var customfields = (jsContext.customtName);
+customfields.forEach(main=>{
+var customfieldname = main.name;
+var customfieldvalue = main.value;
+ if(customfieldname == "MATERIALS"){
+     const values = customfieldvalue.split(',');
+    values.forEach(Element=>{
+       var elementvalue = Element;
+       customfields.forEach(mainname=>{
+               var custommail = mainname.name;
+               var mainvalues = mainname.value;
+               if(elementvalue == custommail){
+                $(".spectwo").append(`<tr><th>${custommail}</th><td>${mainvalues}</td></tr>`);
+                $(".spectwo tr:nth-of-type(even)").css("background", "white");
+               }
+       });
+     });
+ }
+});
+</script>
