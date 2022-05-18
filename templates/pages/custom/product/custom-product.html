@@ -9,101 +9,8 @@ product:
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
-{{inject 'productId' product.id}}
-
-{{#partial "page"}}
-
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-
-    {{#each product.shipping_messages}}
-        {{> components/common/alert/alert-info message}}
-    {{/each}}
-    <style>
-        .table-custom{
-            background-color: white;
-            table-layout: unset;
-        }
-    </style>
-    <div>
-        {{> components/products/custom-product-view}}
-    </div>
-    <div class="custom-feilds-three-sections">
-
-
-        <!-- custom feilds -->
-
-        <!-- large-push-6  -->
-
-    <!-- <div class="row"> 
-        <div class="large-6 columns">     
-            
-            {{#if theme_settings.show_custom_fields_tabs '!==' true}}
-                {{#each product.custom_fields}}
-                <table class="table-custom">
-                <tr>
-                  <th class="specone"></th>
-                  <td class="spectwo"></td>
-                </tr>
-                </table>
-              {{/each}}
-            {{/if}}
-        </div>
-    </div>  -->
-
-    <!-- <div>{{{region name="below_content--global"}}}</div> -->
-    
-<style>
-    .custom-table-one{
-        background-color: white!important;
-        border: none;
-    }
-</style>
-
-<div class="row">
-    <div class="large-6 columns">
-
-<h1>SPECIFICATION</h1>
-<table class="custom-table-one">
-    <tbody>
-        <tr class="specone">
-        </tr>
-    </tbody>
-</table>
-
-</div>
-<div class="large-6 columns">
-
-    <table style="border: none;">
-    <h1>MORE DETAILS</h1>
-    {{#each product.custom_fields}}
-        {{#if name '==' "MORE DETAILS"}}
-        <tr>
-        <td style="background-color: white;"><li>{{value}}</li></td>
-        </tr>        
-        {{/if}}
-        {{/each}}
-</table>
-
-</div>
-</div>
-
-<div class="row">
-<div class="large-6 columns push-large-6">
-<h1>MATERIALS</h1>
-<table class="custom-table-one">
-    <tbody>
-        <tr class="spectwo">
-        </tr>
-    </tbody>
-</table>
-</div>
-
-
-
-<!-- colapse -->
-
-<style>
-    .collapsible {
+<style> 
+    /* .collapsible {
       background-color: #777;
       color: white;
       cursor: pointer;
@@ -113,63 +20,313 @@ product:
       text-align: left;
       outline: none;
       font-size: 15px;
+     
     }
     
     .active, .collapsible:hover {
       background-color: #555;
+      transition: all 0.8s ease;
+    } */
+
+
+
+/* up to 900 small screen */
+
+@media only screen and (max-width: 800px){
+     .quantity-pdp{
+        margin-left: -330% !important;
+        margin-top: 16% !important;
+        background-color: white !important;
+        border: 1px solid black !important;
     }
-    
-    .content {
-      padding: 0 18px;
-      display: none;
-      overflow: hidden;
-      background-color: #f1f1f1;
+    .quantity-label{
+     margin-top: 24px;
     }
-    </style>
-
-<h2>Collapsibles</h2>
-
-<p>A Collapsible:</p>
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-
-<p>Collapsible Set:</p>
-<button type="button" class="collapsible">Open Section 1</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-<button type="button" class="collapsible">Open Section 2</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-<button type="button" class="collapsible">Open Section 3</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
+    .productView-thumbnails .slick-next{
+        transform: rotate(90deg);
+        margin-top: 74%;
+        margin-right: 49%;
     }
-  });
+    .productView-thumbnails .slick-prev{
+     display: none !important;
 }
-</script>
-<!-- colapse -->
+ .carousel-tooltip{
+     display: none !important;
+}
+ .productView-options .form-action{
+     margin-top: 0px;
+}
+ input#form-action-addToCart{
+     position: relative;
+     color: #fff;
+     background: #333;
+     border: 1px solid #333;
+     margin: 0;
+     outline: none;
+     text-transform: uppercase;
+     padding: 14px 25px;
+     display: inline-block;
+     cursor: pointer;
+     text-align: center;
+     font-size: 14px;
+     line-height: 1.5;
+     font-family: "Forza","Open Sans","Trebuchet MS",Arial,sans-serif;
+     font-weight: 500;
+     letter-spacing: 0.15em;
+     height: 65px;
+     width: 200px;
+     text-decoration: none;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     border-radius: 0;
+     -moz-transition: all 0.3s ease;
+     -webkit-transition: all 0.3s ease;
+     -o-transition: all 0.3s ease;
+     transition: all 0.3s ease;
+     background: #00b050;
+     border-color: #00b050;
+}
+ input#form-action-addToCart:hover{
+     background-color: white;
+     color: black;
+}
+ .content {
+     padding: 0 18px;
+     display: none;
+     overflow: hidden;
+     background-color: #f1f1f1;
+}
+ .custom-table-one{
+     background: white !important;
+     border: none;
+}
+.custom-table-two{
+     background: white !important;
+     border: none;
+}
+.listed-table{
+    padding: 8px 0 !important;
+}
+.custom-table-one tr th{
+    padding: 0px 30px 8px 0px !important;
+}
+           .custom-table-one tr td{
+                padding: 8px 0 !important;
+            }
+.custom-table-two tr th{
+    padding: 0px 30px 8px 0px !important;
+}            
+            .custom-table-two tr td{
+                padding: 8px 0 !important;
+            }
+ #twocoltable tr:nth-of-type(odd){
+     background: white 
+}
+ #twocoltable tr:nth-of-type(even){
+     background: white 
+}
+ @media (min-width: 1261px){
+     #fullpage #main-content .container{
+         margin-left: 0px !important;
+         margin-right: 0px !important;
+         padding: 0rem !important;
+    }
+}
+ #fullpage #main-content .container{
+     margin-left: 0px !important;
+     margin-right: 0px !important;
+     padding: 0px !important;
+}
+
+
+}
+
+/* large screen 901 and above */
+
+@media only screen and (min-width: 800px){
+     .quantity-pdp{
+         background-color: white !important;
+         border: 1px solid black !important;
+         height: 66px !important;
+         width: 38px !important;
+         margin-left: 80% !important;
+         margin-top: 17% !important;
+    }
+     .quantity-text{
+         margin-top: 10px!important;
+         margin-left: -8%;
+         padding-left: 130%;
+    }
+    .quantity-label{
+     margin-top: 24px;
+}
+            .productView-thumbnails .slick-next{
+                transform: rotate(90deg);
+                margin-top: 80%;
+                margin-right: 48%;
+            }
+}
+
+
+.productView-thumbnails .slick-prev{
+     display: none !important;
+}
+ .carousel-tooltip{
+     display: none !important;
+}
+ .productView-options .form-action{
+     margin-top: 0px;
+}
+ input#form-action-addToCart{
+     position: relative;
+     color: #fff;
+     background: #333;
+     border: 1px solid #333;
+     margin: 0;
+     outline: none;
+     text-transform: uppercase;
+     padding: 14px 25px;
+     display: inline-block;
+     cursor: pointer;
+     text-align: center;
+     font-size: 14px;
+     line-height: 1.5;
+     font-family: "Forza","Open Sans","Trebuchet MS",Arial,sans-serif;
+     font-weight: 500;
+     letter-spacing: 0.15em;
+     height: 65px;
+     width: 200px;
+     text-decoration: none;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     border-radius: 0;
+     -moz-transition: all 0.3s ease;
+     -webkit-transition: all 0.3s ease;
+     -o-transition: all 0.3s ease;
+     transition: all 0.3s ease;
+     background: #00b050;
+     border-color: #00b050;
+}
+ input#form-action-addToCart:hover{
+     background-color: white;
+     color: black;
+}
+ .content {
+     padding: 0 18px;
+     display: none;
+     overflow: hidden;
+     background-color: #f1f1f1;
+}
+ .custom-table-one{
+     background: white !important;
+     border: none;
+}
+.custom-table-two{
+     background: white !important;
+     border: none;
+}
+.listed-table{
+    padding: 8px 0 !important;
+}
+.custom-table-one tr th{
+    padding: 0px 30px 8px 0px !important;
+}
+           .custom-table-one tr td{
+                padding: 8px 0 !important;
+            }
+.custom-table-two tr th{
+    padding: 0px 30px 8px 0px !important;
+}            
+            .custom-table-two tr td{
+                padding: 8px 0 !important;
+            }
+ #twocoltable tr:nth-of-type(odd){
+     background: white 
+}
+ #twocoltable tr:nth-of-type(even){
+     background: white 
+}
+ @media (min-width: 1261px){
+     #fullpage #main-content .container{
+         margin-left: 0px !important;
+         margin-right: 0px !important;
+         padding: 0rem !important;
+    }
+}
+ #fullpage #main-content .container{
+     margin-left: 0px !important;
+     margin-right: 0px !important;
+     padding: 0px !important;
+}
+</style>
+
+<div id="fullpage">
+
+    {{inject 'productId' product.id}}
+    
+    {{#partial "page"}}
+    
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    
+    {{#each product.shipping_messages}}
+    {{> components/common/alert/alert-info message}}
+    {{/each}}
+    
+    <div>
+        {{> components/products/custom-product-view}}
+    </div>
+    <div class="custom-feilds-three-sections">
+
+<div class="row">
+    <div class="large-6 columns">
+
+<h1 class="collapsible">SPECIFICATION</h1>
+<table class="custom-table-one" id="twocoltable">
+    <tbody>
+        <tr class="specone">
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
+<div class="large-6 columns">
+
+<table style="border: none;" >
+    <h1 class="collapsible">MORE DETAILS</h1>
+    {{#each product.custom_fields}}
+        {{#if name '==' "MORE DETAILS"}}
+        <tr>
+        <td class="listed-table" style="background-color: white;"><li><span>{{value}}</span></li></td> 
+        </tr>        
+        {{/if}}
+        {{/each}}
+</table>
+
+</div>
+</div>
+
+<div class="row" >
+<div class="large-6 columns push-large-6">
+<h1 class="collapsible">MATERIALS</h1>
+<table class="custom-table-two" id="twocoltable">
+    <tbody>
+        <tr class="spectwo">
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+<!-- style="display: none;" -->
+
+
 
 
              
-        {{{region name="product_below_content"}}}
+{{{region name="product_below_content"}}}
 
         {{#if product.videos.list.length}}
             {{> components/products/videos product.videos}}
@@ -179,17 +336,19 @@ for (i = 0; i < coll.length; i++) {
             {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
         {{/all}}
     </div>
-
+    
     {{> components/products/schema}}
-{{/partial}}
-{{> layout/base}}
-
-`{{inject "customtName" product.custom_fields}}
+    {{/partial}}
+    {{> layout/base}}
+    
+    `{{inject "customtName" product.custom_fields}}
+</div>
+    
  <script>
- var jsContext = JSON.parse({{jsContext}});
- var customfields = (jsContext.customtName);
- customfields.forEach(main=>{
- var customfieldname = main.name;
+     var jsContext = JSON.parse({{jsContext}});
+     var customfields = (jsContext.customtName);
+     customfields.forEach(main=>{
+         var customfieldname = main.name;
  var customfieldvalue = main.value;
   if(customfieldname == "SPECIFICATION"){
       const values = customfieldvalue.split(',');
@@ -200,34 +359,52 @@ for (i = 0; i < coll.length; i++) {
                 var mainvalues = mainname.value;
                 if(elementvalue == custommail){
                     $(".specone").append(`<tr><th>${custommail}</th><td>${mainvalues}</td></tr>`);
-                    $(".specone tr:nth-of-type(even)").css("background", "white");
                 }
         });
       });
   }
  });
- </script>
-
-`{{inject "customtName" product.custom_fields}}
-<script>
-var jsContext = JSON.parse({{jsContext}});
-var customfields = (jsContext.customtName);
-customfields.forEach(main=>{
-var customfieldname = main.name;
-var customfieldvalue = main.value;
- if(customfieldname == "MATERIALS"){
-     const values = customfieldvalue.split(',');
-    values.forEach(Element=>{
+ 
+ //  material section
+ 
+ var jsContext = JSON.parse({{jsContext}});
+ var customfields = (jsContext.customtName);
+ customfields.forEach(main=>{
+     var customfieldname = main.name;
+     var customfieldvalue = main.value;
+     if(customfieldname == "MATERIALS"){
+         const values = customfieldvalue.split(',');
+         values.forEach(Element=>{
        var elementvalue = Element;
        customfields.forEach(mainname=>{
                var custommail = mainname.name;
                var mainvalues = mainname.value;
                if(elementvalue == custommail){
-                $(".spectwo").append(`<tr><th>${custommail}</th><td>${mainvalues}</td></tr>`);
-                $(".spectwo tr:nth-of-type(even)").css("background", "white");
-               }
-       });
-     });
- }
+                   $(".spectwo").append(`<tr><th>${custommail}</th><td>${mainvalues}</td></tr>`);
+                }
+            });
+        });
+    }
 });
 </script>
+
+<!-- colapse -->
+
+<!-- <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "none") {
+          content.style.display = "block";
+        } else {
+          content.style.display = "none";
+        }
+      });
+    }
+    </script> -->
+    
+    <!-- colapse -->
