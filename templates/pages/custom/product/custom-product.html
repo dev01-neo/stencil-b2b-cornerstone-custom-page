@@ -330,10 +330,6 @@ product:
 
 {{assignVar "depth" product.depth}}
 
-{{assignVar "weight" product.weight}}
-
-{{assignVar "sku" product.sku}}
-
         {{#each product.custom_fields}}
         {{#if name '==' "DIMENSIONS"}}
 <table class="table-insertion">
@@ -343,22 +339,19 @@ product:
         </tr>
         {{/if}}
         {{/each}}
-        {{#each product.custom_fields}}
-        {{#if name '==' "WEIGHT"}}
+        {{#if product.weight}}
         <tr>  
-            <th class="table-insertion-one">{{name}}</th>
-            <td class="table-insertion-two">{{getVar "weight"}}</td>
+            <th class="table-insertion-one">WEIGHT</th>
+            <td class="table-insertion-two">{{product.weight}}</td>
         </tr>       
-        {{/if}}
-        {{/each}}
-        {{#each product.custom_fields}}
-        {{#if name '==' "SKU"}}  
+        {{/if}} 
+        {{#if product.sku}}  
         <tr>
-            <th class="table-insertion-one">{{name}}</th>
-            <td class="table-insertion-two">{{getVar "sku"}}</td>
+            <th class="table-insertion-one">SKU</th>
+            <td class="table-insertion-two">{{product.sku}}</td>
         </tr>
         {{/if}}
-        {{/each}}
+        
 </table>
 
         
@@ -521,7 +514,10 @@ $(document).ready(function (){
 
 <!-- colapse -->
 
-<!-- <script>
+<script>
+    if($(window).width() >= 1024){
+  
+}
     var coll = document.getElementsByClassName("collapsible");
     var i;
     
@@ -536,6 +532,6 @@ $(document).ready(function (){
         }
       });
     }
-    </script> -->
+    </script>
     
     <!-- colapse -->
