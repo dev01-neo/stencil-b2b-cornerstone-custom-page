@@ -1,15 +1,24 @@
 <div class="resize-box">
-<div class="small-6 medium-6 large-3 columns">
+<div class="small-6 medium-4 large-3 columns">
 {{#if theme_settings.show_product_quantity_box}}
         {{inject 'productQuantityErrorMessage'  (lang 'products.quantity_error_message')}}
-        <div class="form-field form-field--increments quantity-text">
+        <div class="form-field form-field--increments">
             <label class="form-label form-label--alternate quantity-label"
                    for="qty[]">{{lang 'products.quantity'}}</label>
         </div>
     {{/if}}
 </div>
-<div class="small-2 medium-2 large-3 columns">
-    <input class="form-input form-input--incrementTotal quantity-pdp"
+<div class="small-2 medium-6 large-3 columns">
+    <div class="form-increment" data-quantity-change>
+        <button class="button button--icon quantity-box-button" data-action="dec">
+            <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+            <i class="icon" aria-hidden="true">
+                <svg>
+                    <use xlink:href="#icon-keyboard-arrow-down"/>
+                </svg>
+            </i>
+        </button>
+    <input class="form-input form-input--incrementTotal quantity-box-input"
                     id="qty[]"
                     name="qty[]"
                     type="tel"
@@ -19,8 +28,17 @@
                     min="1"
                     pattern="[0-9]*"
                     aria-live="polite">
+        <button class="button button--icon quantity-box-button" data-action="inc">
+            <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+            <i class="icon" aria-hidden="true">
+                <svg>
+                    <use xlink:href="#icon-keyboard-arrow-up"/>
+                </svg>
+            </i>
+        </button>
+    </div>
 </div>
-<div id="add-to-cart-wrapper" class="add-to-cart-wrapper small-12 medium-12 large-4 large-pull-2 columns" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
+<div id="add-to-cart-wrapper" class="add-to-cart-wrapper medium-12 large-4 large-pull-2 columns" {{#unless product.can_purchase}}style="display: none"{{/unless}}>
     <div class="alertBox productAttributes-message" style="display:none">
         <div class="alertBox-column alertBox-icon">
             <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
